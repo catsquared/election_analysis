@@ -20,17 +20,26 @@ file_to_load_alt = os.path.join("Resources", "election_results.csv")
 
 # Use with function instead of open() and close()
 with open(file_to_load_alt) as election_data:
+    # Use the reader function from the csv module
+    file_reader = csv.reader(election_data)
 
-    print(election_data)
+    # Print each row in the csv file
+    # Each row is printed as a list
+    # for row in file_reader:
+    #     print(row[0])
+
+    # Read and print the header row
+    header = next(file_reader)
+    print(header)
 
 # Declare a file to write to
-file_to_save = os.path.join("Analysis", "election_analysis.txt")
+# file_to_save = os.path.join("Analysis", "election_analysis.txt")
 
-# Declare a file object
-with open(file_to_save, 'w') as txt_file:
+# # Declare a file object
+# with open(file_to_save, 'w') as txt_file:
 
     # Test on writing to outfile
-    txt_file.write("Counties in the election\n----------\nArapahoe\nDenver\nJefferson")
+    # txt_file.write("Counties in the election\n----------\nArapahoe\nDenver\nJefferson")
 
 
 # Total number of votes cast
