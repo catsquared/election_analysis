@@ -65,6 +65,20 @@ print(f"The List of Candidates are {candidates}.")
 # Print the dictionary of Candidates and their votes
 print(f"The candidates and their votes are {candidate_dict}")
 
+# Calculate the pct of votes for each Candidate
+# Divide each candidate's vote by total_votes
+# Use a dictionary to keep the candidates and their pct
+pct_dict = dict()
+for c in candidates:
+    # Get the candidate votes from candidate_dict
+    candidate_vote = candidate_dict.get(c)
+    # Calculate the percentage and assign it to the value
+    # Format it such that only 2 decimals are present
+    pct_dict[c] = f"{candidate_vote / total_votes * 100 :.2f}%"
+
+# Print the dictionary of Candidates and their votes in pct
+print(f"The candidates and pct of votes they received are {pct_dict}")
+
 # # Declare a file object
 # with open(file_to_save, 'w') as txt_file:
 
