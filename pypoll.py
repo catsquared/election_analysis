@@ -13,13 +13,16 @@ import os
 # file_to_load = "Resources/election_results.csv"
 
 # Alternatively, name the file using the os module
-file_to_load_alt = os.path.join("Resources", "election_results.csv")
+file_to_load = os.path.join("Resources", "election_results.csv")
+
+# Declare a file to write to
+file_to_save = os.path.join("Analysis", "election_analysis.txt")
 
 # Declare a file object
 # election_data = open(file_to_load, 'r')
 
 # Use with function instead of open() and close()
-with open(file_to_load_alt) as election_data:
+with open(file_to_load) as election_data:
     # Use the reader function from the csv module
     file_reader = csv.reader(election_data)
 
@@ -31,9 +34,6 @@ with open(file_to_load_alt) as election_data:
     # Read and print the header row
     header = next(file_reader)
     print(header)
-
-# Declare a file to write to
-# file_to_save = os.path.join("Analysis", "election_analysis.txt")
 
 # # Declare a file object
 # with open(file_to_save, 'w') as txt_file:
