@@ -21,19 +21,27 @@ file_to_save = os.path.join("Analysis", "election_analysis.txt")
 # Declare a file object
 # election_data = open(file_to_load, 'r')
 
+# Total number of votes cast
+#   Equals total rows
+#   Can count while the next row is not empty
+# Every time the .py file is run, total votes should be 0
+total_votes = 0
+
 # Use with function instead of open() and close()
 with open(file_to_load) as election_data:
     # Use the reader function from the csv module
     file_reader = csv.reader(election_data)
 
-    # Print each row in the csv file
-    # Each row is printed as a list
-    # for row in file_reader:
-    #     print(row[0])
-
-    # Read and print the header row
+    # Read the header row
     header = next(file_reader)
-    print(header)
+    
+    # Print each row in the file
+    for row in file_reader:
+        # Use a counter to get total number of votes
+        total_votes += 1
+
+# Print total_votes in console
+print(total_votes)
 
 # # Declare a file object
 # with open(file_to_save, 'w') as txt_file:
@@ -41,11 +49,6 @@ with open(file_to_load) as election_data:
     # Test on writing to outfile
     # txt_file.write("Counties in the election\n----------\nArapahoe\nDenver\nJefferson")
 
-
-# Total number of votes cast
-#   Equals total rows
-#   Can count while the next row is not empty
-# 
 # Store information in a dictionary, or a list of dictionaries:
 # {Candidate_name: Candidate_votes}
 
