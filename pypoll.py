@@ -27,6 +27,9 @@ file_to_save = os.path.join("Analysis", "election_analysis.txt")
 # Every time the .py file is run, total votes should be 0
 total_votes = 0
 
+# Declare a variable to capture list of candidates
+candidates = list()
+
 # Use with function instead of open() and close()
 with open(file_to_load) as election_data:
     # Use the reader function from the csv module
@@ -40,8 +43,15 @@ with open(file_to_load) as election_data:
         # Use a counter to get total number of votes
         total_votes += 1
 
+        # Add the Candidate to a list
+        if row[2] not in candidates:
+            candidates.append(row[2])
+
 # Print total_votes in console
-print(total_votes)
+print(f"The total number of votes cast is {total_votes}.")
+
+# Print all Candidates
+print(f"The List of Candidates are {candidates}.")
 
 # # Declare a file object
 # with open(file_to_save, 'w') as txt_file:
@@ -51,6 +61,8 @@ print(total_votes)
 
 # Store information in a dictionary, or a list of dictionaries:
 # {Candidate_name: Candidate_votes}
+
+
 
 # Or Store information as
 # ({Candidate_name: Name, No_of_Votes: Votes})
