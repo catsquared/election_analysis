@@ -5,6 +5,34 @@
 # Need to get the total number of rows? Or can just cycle through the data one by one
 # Check if the Ballot ID id has duplicates?
 
+# Use Python's built in module called csv
+import csv
+import os
+
+# Name the file to load
+# file_to_load = "Resources/election_results.csv"
+
+# Alternatively, name the file using the os module
+file_to_load_alt = os.path.join("Resources", "election_results.csv")
+
+# Declare a file object
+# election_data = open(file_to_load, 'r')
+
+# Use with function instead of open() and close()
+with open(file_to_load_alt) as election_data:
+
+    print(election_data)
+
+# Declare a file to write to
+file_to_save = os.path.join("Analysis", "election_analysis.txt")
+
+# Declare a file object
+with open(file_to_save, 'w') as txt_file:
+
+    # Test on writing to outfile
+    txt_file.write("Counties in the election\n----------\nArapahoe\nDenver\nJefferson")
+
+
 # Total number of votes cast
 #   Equals total rows
 #   Can count while the next row is not empty
@@ -26,3 +54,11 @@
 #
 # The winner of the election based on popular vote
 #   The Candidate with the highest percentage of votes wins
+
+
+
+# Close the file object after analysis is complete
+# election_data.close()
+
+# Close the file where analysis is performed
+# outfile.close()
