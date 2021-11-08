@@ -33,6 +33,11 @@ candidates = list()
 # Declare a variable to capture dictionary of candidate names and their votes
 candidate_dict = dict()
 
+# Track the winning candidate
+winning_candidate = ""
+winning_votes = 0
+winning_pct = 0
+
 # Use with function instead of open() and close()
 with open(file_to_load) as election_data:
     # Use the reader function from the csv module
@@ -74,10 +79,19 @@ for c in candidates:
     candidate_vote = candidate_dict.get(c)
     # Calculate the percentage and assign it to the value
     # Format it such that only 2 decimals are present
-    pct_dict[c] = f"{candidate_vote / total_votes * 100 :.2f}%"
+    pct_dict[c] = candidate_vote / total_votes * 100
 
-# Print the dictionary of Candidates and their votes in pct
-print(f"The candidates and pct of votes they received are {pct_dict}")
+# Determine the winning candidate
+for c in candidates:
+    # Find the candidate with the highest pct of votes
+    if pct_dict.get(c) > winning_pct:
+        winning_pct = pct_dict.get(c)
+        winning_votes = candidate_dict.get(c)
+        winning_candidate = c
+
+# Print the winning candidate info
+print(f"The winning candidate is {winning_candidate}, with {winning_votes:,} votes in total, and {winning_pct:.2f}% of the votes.")
+
 
 # # Declare a file object
 # with open(file_to_save, 'w') as txt_file:
