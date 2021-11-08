@@ -30,6 +30,9 @@ total_votes = 0
 # Declare a variable to capture list of candidates
 candidates = list()
 
+# Declare a variable to capture dictionary of candidate names and their votes
+candidate_dict = dict()
+
 # Use with function instead of open() and close()
 with open(file_to_load) as election_data:
     # Use the reader function from the csv module
@@ -42,16 +45,25 @@ with open(file_to_load) as election_data:
     for row in file_reader:
         # Use a counter to get total number of votes
         total_votes += 1
+        candidate_name = row[2]
 
         # Add the Candidate to a list
-        if row[2] not in candidates:
-            candidates.append(row[2])
+        if candidate_name not in candidates:
+            candidates.append(candidate_name)
+            # Add the vote for the candidate to the dictionary candidate_dict
+            candidate_dict[candidate_name] = 0
+        
+        # Add the vote to the correct candidate in candidate_dict
+        candidate_dict[candidate_name] += 1
 
 # Print total_votes in console
 print(f"The total number of votes cast is {total_votes}.")
 
 # Print all Candidates
 print(f"The List of Candidates are {candidates}.")
+
+# Print the dictionary of Candidates and their votes
+print(f"The candidates and their votes are {candidate_dict}")
 
 # # Declare a file object
 # with open(file_to_save, 'w') as txt_file:
