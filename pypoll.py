@@ -61,43 +61,61 @@ with open(file_to_load) as election_data:
         # Add the vote to the correct candidate in candidate_dict
         candidate_dict[candidate_name] += 1
 
-# Print total_votes in console
-print(f"The total number of votes cast is {total_votes}.")
+# Declare a file object
+with open(file_to_save, 'w') as txt_file:
 
-# Print all Candidates
-print(f"The List of Candidates are {candidates}.")
+    # Write to file
+    election_results = (
+        f"\nElection Results\n"
+        f"--------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"--------------------\n"
+    )
+    print(election_results, end = "")
+    txt_file.write(election_results)
+    # # Print total_votes in console
+    # print(f"The total number of votes cast is {total_votes}.")
 
-# Print the dictionary of Candidates and their votes
-print(f"The candidates and their votes are {candidate_dict}")
+    # # Print all Candidates
+    # print(f"The List of Candidates are {candidates}.")
 
-# Calculate the pct of votes for each Candidate
-# Divide each candidate's vote by total_votes
-# Use a dictionary to keep the candidates and their pct
-pct_dict = dict()
-for c in candidates:
-    # Get the candidate votes from candidate_dict
-    candidate_vote = candidate_dict.get(c)
-    # Calculate the percentage and assign it to the value
-    # Format it such that only 2 decimals are present
-    pct_dict[c] = candidate_vote / total_votes * 100
+    # # Print the dictionary of Candidates and their votes
+    # print(f"The candidates and their votes are {candidate_dict}")
 
-# Determine the winning candidate
-for c in candidates:
-    # Find the candidate with the highest pct of votes
-    if pct_dict.get(c) > winning_pct:
-        winning_pct = pct_dict.get(c)
-        winning_votes = candidate_dict.get(c)
-        winning_candidate = c
+    # Calculate the pct of votes for each Candidate
+    # Divide each candidate's vote by total_votes
+    # Use a dictionary to keep the candidates and their pct
+    pct_dict = dict()
+    for c in candidates:
+        # Get the candidate votes from candidate_dict
+        candidate_vote = candidate_dict.get(c)
+        # Calculate the percentage and assign it to the value
+        # Format it such that only 2 decimals are present
+        pct_dict[c] = candidate_vote / total_votes * 100
 
-# Print the winning candidate info
-print(f"The winning candidate is {winning_candidate}, with {winning_votes:,} votes in total, and {winning_pct:.2f}% of the votes.")
+    # Determine the winning candidate
+    for c in candidates:
+        # Find the candidate with the highest pct of votes
+        if pct_dict.get(c) > winning_pct:
+            winning_pct = pct_dict.get(c)
+            winning_votes = candidate_dict.get(c)
+            winning_candidate = c
+        candidate_results = (
+            f"{c}: {pct_dict.get(c):.1f}% ({candidate_dict.get(c):,})\n"
+        )
+        print(candidate_results)
+        txt_file.write(candidate_results)
 
-
-# # Declare a file object
-# with open(file_to_save, 'w') as txt_file:
-
-    # Test on writing to outfile
-    # txt_file.write("Counties in the election\n----------\nArapahoe\nDenver\nJefferson")
+    # Print the winning candidate info
+    winning_candidate_summary = (
+        f"--------------------\n"
+        f"Winner: {winning_candidate}\n"
+        f"Winning vote count: {winning_votes:,}\n"
+        f"Winning vote pct: {winning_pct:.1f}%\n"
+        f"--------------------\n"
+        )
+    print(winning_candidate_summary)
+    txt_file.write(winning_candidate_summary)
 
 # Store information in a dictionary, or a list of dictionaries:
 # {Candidate_name: Candidate_votes}
