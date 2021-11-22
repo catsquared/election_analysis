@@ -27,7 +27,7 @@ The results of the election per the audit are as follow:
 
 The script can be used for any election, as long as the file path is clearly defined in line 9.
 
-To modify the output of the the script, make changes starting at line 88.
+To modify the output of the the script, make changes starting at line 88. 
 
     # Print the final vote count (to terminal)
     election_results = (
